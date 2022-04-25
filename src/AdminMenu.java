@@ -132,7 +132,7 @@ private static Collection<IRoom> roomAdded(){
                     System.out.println("Please enter 'Yes or No' or 'y' or 'n'");
                     keepRunning = true;
                 }finally {
-                    System.out.println("Please enter 'Yes or No' or 'y' or 'n'");
+//                    System.out.println("Please enter 'Yes or No' or 'y' or 'n'");
                 }
             }
 
@@ -153,15 +153,16 @@ private static Collection<IRoom> roomAdded(){
         boolean keepRunning = true;
         RoomType roomType = RoomType.SINGLE;
         String userResponse = "";
-//        String roomTypeRegex = "([ds])";
-//        Pattern patter = Pattern.compile(roomTypeRegex);
-        Scanner roomTypeScanner = new Scanner(System.in);
+        String roomTypeRegex = "([ds])";
+        Pattern pattern = Pattern.compile(roomTypeRegex);
+//        Scanner roomTypeScanner = new Scanner(System.in);
 
 
         while (keepRunning){
             try {
-                String roomTypeRegex = "([ds])";
-                Pattern pattern = Pattern.compile(roomTypeRegex.toLowerCase(Locale.ROOT));
+                Scanner roomTypeScanner = new Scanner(System.in);
+//                String roomTypeRegex = "([ds])";
+//                Pattern pattern = Pattern.compile(roomTypeRegex.toLowerCase(Locale.ROOT));
                 System.out.println("What kind of room would you like? D for 'Double' or S for 'Single':  ");
                 userResponse = roomTypeScanner.nextLine();
 
@@ -189,12 +190,13 @@ private static Collection<IRoom> roomAdded(){
         boolean keepRunning = true;
         Double roomPrice = 00.00;
 //        String roomPriceRegex = "([0-9]+)\\.?([0-9]+)?";
-        Scanner getRoomPriceScanner = new Scanner(System.in);
+//        Scanner getRoomPriceScanner = new Scanner(System.in);
+        String roomPriceRegex = "([0-9]+)\\.?([0-9]+)?";
+        Pattern pattern = Pattern.compile(roomPriceRegex);
 
         while (keepRunning){
             try {
-                String roomPriceRegex = "([0-9]+)\\.?([0-9]+)?";
-                Pattern pattern = Pattern.compile(roomPriceRegex);
+                Scanner getRoomPriceScanner = new Scanner(System.in);
                 System.out.println("How much is the price for this room per night? ");
                 roomPrice = getRoomPriceScanner.nextDouble();
                 if (!pattern.matcher(roomPrice.toString()).matches()){
@@ -219,12 +221,15 @@ private static Collection<IRoom> roomAdded(){
         boolean roomIDExist = false;
         boolean isThereARoomInTheHashset = false;
         String userResponse = "";
-        Scanner roomNumberScan = new Scanner(System.in);
+//        Scanner roomNumberScan = new Scanner(System.in);
+        String roomNumberRegex = "([0-9]+)";
+        Pattern pattern = Pattern.compile(roomNumberRegex);
 
         while (keepRunning){
             try {
-                String roomNumberRegex = "([0-9]+)";
-                Pattern pattern = Pattern.compile(roomNumberRegex);
+//                String roomNumberRegex = "([0-9]+)";
+//                Pattern pattern = Pattern.compile(roomNumberRegex);
+                Scanner roomNumberScan = new Scanner(System.in);
                 System.out.println("What is the room number for the room that you would like to create? ");
                 userResponse = roomNumberScan.nextLine();
                 if (!pattern.matcher(userResponse).matches()){
