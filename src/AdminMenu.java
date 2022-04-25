@@ -153,15 +153,15 @@ private static Collection<IRoom> roomAdded(){
         boolean keepRunning = true;
         RoomType roomType = RoomType.SINGLE;
         String userResponse = "";
-//        String roomTypeRegex = "([1-2])";
+//        String roomTypeRegex = "([ds])";
 //        Pattern patter = Pattern.compile(roomTypeRegex);
         Scanner roomTypeScanner = new Scanner(System.in);
 
 
         while (keepRunning){
             try {
-                String roomTypeRegex = "([d-s])";
-                Pattern pattern = Pattern.compile(roomTypeRegex);
+                String roomTypeRegex = "([ds])";
+                Pattern pattern = Pattern.compile(roomTypeRegex.toLowerCase(Locale.ROOT));
                 System.out.println("What kind of room would you like? D for 'Double' or S for 'Single':  ");
                 userResponse = roomTypeScanner.nextLine();
 
