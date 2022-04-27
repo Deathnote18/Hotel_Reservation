@@ -14,9 +14,9 @@ import java.util.regex.Pattern;
 public class AdminMenu {
     private static AdminResource adminResourceInstance = AdminResource.getInstance();
     private static HotelResource hotelResourceInstance = HotelResource.getInstance();
-    private static Collection<Reservation> reservationHashSet = new HashSet<>();
     private static Collection<IRoom> roomNotOccupiedHashSet = new HashSet<>();
     private static Collection<Customer> customersHashset = new HashSet<>();
+    private static Collection<IRoom> roomsHashset = new HashSet<>();
 
 
     private static AdminMenu adminMenuInstance = null;
@@ -110,8 +110,9 @@ private static Collection<IRoom> roomAdded(){
             Double roomPrice = getRoomPrice();
             RoomType roomType = getRoomType();
             IRoom room = (IRoom)new Room(roomNumber, roomPrice, roomType);
-            roomNotOccupiedHashSet.add(room);
-            System.out.println("adding room\n".toUpperCase(Locale.ROOT) + room);
+            roomsHashset.add(room);
+            System.out.println("adding room\n".toUpperCase(Locale.ROOT) + room.toString());
+
             boolean askAgain = true;
             while (askAgain){
                 try {
@@ -138,7 +139,7 @@ private static Collection<IRoom> roomAdded(){
 
 
         }
-    return roomNotOccupiedHashSet;
+    return roomsHashset;
 }
 
     public static String getRoomNumber() {
@@ -242,7 +243,7 @@ private static Collection<IRoom> roomAdded(){
                     throw new IllegalArgumentException("ID already exist, cannot enter duplicate IDs. ");
                 }
 
-                for (IRoom roomExistHashset: roomNotOccupiedHashSet) {
+                for (IRoom roomExistHashset: roomsHashset) {
                     if (roomExistHashset.getRoomNumber().compareTo(userResponse) == 0){
                         throw new IllegalArgumentException("ID already exist, unable to create duplicate IDs. Please try again. ");
                     }
