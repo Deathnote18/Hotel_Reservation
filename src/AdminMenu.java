@@ -16,7 +16,7 @@ public class AdminMenu {
     private static HotelResource hotelResourceInstance = HotelResource.getInstance();
     private static Collection<IRoom> roomNotOccupiedHashSet = new HashSet<>();
     private static Collection<Customer> customersHashset = new HashSet<>();
-    private static Collection<IRoom> roomsHashset = new HashSet<>();
+    private static List<IRoom> roomsAddedList = new ArrayList<>();
 
 
     private static AdminMenu adminMenuInstance = null;
@@ -77,7 +77,8 @@ public class AdminMenu {
                         adminResourceInstance.displayAllReservations();
                         break;
                     case 4:
-                        adminResourceInstance.addRoom((List<IRoom>) roomAdded());
+                        adminResourceInstance.addRoom(roomAdded());
+//                        adminResourceInstance.addRoom((List<IRoom>) roomAdded()); // I had to change the roomAdded method from a collection to a list.
                         break;
                     case 5:
                         MainMenu mainMenuInstance = MainMenu.getInstance();
@@ -94,10 +95,9 @@ public class AdminMenu {
         }
 
 
-
     }
 
-private static Collection<IRoom> roomAdded(){
+private static List<IRoom> roomAdded(){
         boolean keepRunning = true;
         String roomAddedInputFromAdmin = "";
         String yesOrNoResponseRegex = "";
@@ -110,23 +110,23 @@ private static Collection<IRoom> roomAdded(){
             Double roomPrice = getRoomPrice();
             RoomType roomType = getRoomType();
             IRoom room = (IRoom)new Room(roomNumber, roomPrice, roomType);
-            roomsHashset.add(room);
-            System.out.println("adding room\n".toUpperCase(Locale.ROOT) + room.toString());
+            roomsAddedList.add(room);
+            System.out.println("adding room\n".toUpperCase(Locale.ROOT) + room);
 
-            boolean askAgain = true;
-            while (askAgain){
+            boolean addAnotherRoomBoolean = true;
+            while (addAnotherRoomBoolean){
                 try {
                     System.out.println("Add another room?\n'Yes or No' ".toUpperCase(Locale.ROOT));
                     roomAddedInputFromAdmin = wouldYouLikeToAddAnotherRoomScanner.nextLine();
                     if (!pattern.matcher(roomAddedInputFromAdmin).matches()){
-                        askAgain = true;
+                        addAnotherRoomBoolean = true;
                         throw new IllegalArgumentException();
 
-                    }else if (roomAddedInputFromAdmin.equals("y") || roomAddedInputFromAdmin.equals("yes")){
-                        askAgain = false;
+                    }else if (roomAddedInputFromAdmin.equals("y".toLowerCase(Locale.ROOT)) || roomAddedInputFromAdmin.equals("yes".toLowerCase(Locale.ROOT))){
+                        addAnotherRoomBoolean = false;
                         keepRunning = true;
-                    }else if (roomAddedInputFromAdmin.equals("n") || roomAddedInputFromAdmin.equals("no")){
-                        askAgain = false;
+                    }else if (roomAddedInputFromAdmin.equals("n".toLowerCase(Locale.ROOT)) || roomAddedInputFromAdmin.equals("no".toLowerCase(Locale.ROOT))){
+                        addAnotherRoomBoolean = false;
                         keepRunning = false;
                     }
                 }catch (Exception exception){
@@ -139,20 +139,19 @@ private static Collection<IRoom> roomAdded(){
 
 
         }
-    return roomsHashset;
+    return roomsAddedList;
 }
 
     public static String getRoomNumber() {
 
-        String roomID = null;
-        roomID = validateInputNumber();
+        String roomID = validateInputNumber();
         return roomID;
 
     }
 
     private static RoomType getRoomType(){
         boolean keepRunning = true;
-        RoomType roomType = RoomType.SINGLE;
+        RoomType roomType;
         String userResponse = "";
         String roomTypeRegex = "([ds])";
         Pattern pattern = Pattern.compile(roomTypeRegex);
@@ -182,7 +181,7 @@ private static Collection<IRoom> roomAdded(){
             roomType = RoomType.DOUBLE;
         }
         else {
-            roomType = RoomType.DOUBLE;
+           roomType = RoomType.SINGLE;
         }
         return roomType;
     }
@@ -209,7 +208,7 @@ private static Collection<IRoom> roomAdded(){
                 System.out.println("Please enter the correct dollar amount with two decimal places, \nSuch as '00.00'");
                 continue;
             }finally {
-                System.out.println("Please enter the correct dollar amount with two decimal places");
+//                System.out.println("Please enter the correct dollar amount with two decimal places");
             }
             keepRunning = false;
         }
@@ -217,12 +216,11 @@ private static Collection<IRoom> roomAdded(){
     }
 
     private static String validateInputNumber(){
-        boolean validInput = false;
+
         boolean keepRunning = true;
         boolean roomIDExist = false;
-        boolean isThereARoomInTheHashset = false;
         String userResponse = "";
-//        Scanner roomNumberScan = new Scanner(System.in);
+        Scanner roomNumberScan = new Scanner(System.in);
         String roomNumberRegex = "([0-9]+)";
         Pattern pattern = Pattern.compile(roomNumberRegex);
 
@@ -230,7 +228,7 @@ private static Collection<IRoom> roomAdded(){
             try {
 //                String roomNumberRegex = "([0-9]+)";
 //                Pattern pattern = Pattern.compile(roomNumberRegex);
-                Scanner roomNumberScan = new Scanner(System.in);
+//                Scanner roomNumberScan = new Scanner(System.in);
                 System.out.println("What is the room number for the room that you would like to create? ");
                 userResponse = roomNumberScan.nextLine();
                 if (!pattern.matcher(userResponse).matches()){
@@ -243,7 +241,7 @@ private static Collection<IRoom> roomAdded(){
                     throw new IllegalArgumentException("ID already exist, cannot enter duplicate IDs. ");
                 }
 
-                for (IRoom roomExistHashset: roomsHashset) {
+                for (IRoom roomExistHashset: roomsAddedList) {
                     if (roomExistHashset.getRoomNumber().compareTo(userResponse) == 0){
                         throw new IllegalArgumentException("ID already exist, unable to create duplicate IDs. Please try again. ");
                     }
