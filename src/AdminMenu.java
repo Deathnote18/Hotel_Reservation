@@ -78,7 +78,7 @@ public class AdminMenu {
                         break;
                     case 4:
                         adminResourceInstance.addRoom(roomAdded());
-//                        adminResourceInstance.addRoom((List<IRoom>) roomAdded()); // I had to change the roomAdded method from a collection to a list.
+//                        adminResourceInstance.addRoom((List<IRoom>) roomAdded()); // Not sure if this will work.
                         break;
                     case 5:
                         MainMenu mainMenuInstance = MainMenu.getInstance();
@@ -116,7 +116,7 @@ private static List<IRoom> roomAdded(){
             boolean addAnotherRoomBoolean = true;
             while (addAnotherRoomBoolean){
                 try {
-                    System.out.println("Add another room?\n'Yes or No' ".toUpperCase(Locale.ROOT));
+                    System.out.println("Add another room?\n Enter 'Yes or No' or 'Y' or 'N' ".toUpperCase(Locale.ROOT));
                     roomAddedInputFromAdmin = wouldYouLikeToAddAnotherRoomScanner.nextLine();
                     if (!pattern.matcher(roomAddedInputFromAdmin).matches()){
                         addAnotherRoomBoolean = true;
@@ -163,11 +163,11 @@ private static List<IRoom> roomAdded(){
                 Scanner roomTypeScanner = new Scanner(System.in);
 //                String roomTypeRegex = "([ds])";
 //                Pattern pattern = Pattern.compile(roomTypeRegex.toLowerCase(Locale.ROOT));
-                System.out.println("What kind of room would you like? D for 'Double' or S for 'Single':  ");
+                System.out.println(" What kind of room would you like? D for 'Double' or S for 'Single':  ");
                 userResponse = roomTypeScanner.nextLine();
 
                 if (!pattern.matcher(userResponse).matches()){
-                    throw  new IllegalArgumentException("Please enter D for 'Double'' or S for 'Single'");
+                    throw  new IllegalArgumentException(" Please enter D for 'Double'' or S for 'Single' ");
                 }
             }catch (Exception exception){
                 System.out.println("I'm sorry, that input is invalid. ");
@@ -205,7 +205,7 @@ private static List<IRoom> roomAdded(){
 
 
             }catch (Exception exception){
-                System.out.println("Please enter the correct dollar amount with two decimal places, \nSuch as '00.00'");
+                System.out.println(" Please enter the correct dollar amount with two decimal places, \nSuch as '00.00' ");
                 continue;
             }finally {
 //                System.out.println("Please enter the correct dollar amount with two decimal places");
@@ -229,7 +229,7 @@ private static List<IRoom> roomAdded(){
 //                String roomNumberRegex = "([0-9]+)";
 //                Pattern pattern = Pattern.compile(roomNumberRegex);
 //                Scanner roomNumberScan = new Scanner(System.in);
-                System.out.println("What is the room number for the room that you would like to create? ");
+                System.out.println(" What is the room number for the room that you would like to create? ");
                 userResponse = roomNumberScan.nextLine();
                 if (!pattern.matcher(userResponse).matches()){
                     throw new IllegalArgumentException(("Not a valid number. "));
@@ -250,7 +250,7 @@ private static List<IRoom> roomAdded(){
                 continue;
 
             }finally {
-                System.out.println("Invalid data. ");
+//                System.out.println("Invalid data. "); Commenting this out to for debugging
             }keepRunning = false;
         }
         return userResponse;

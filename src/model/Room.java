@@ -58,6 +58,6 @@ public class Room implements IRoom{
 
     @Override
     public String toString() {
-        return "Please find the available rooms below: \n" + roomNumber + price + enumeration;
+        return "Please find the available rooms below: \n" + roomNumber + " " + price + " " + enumeration;
     }
 }

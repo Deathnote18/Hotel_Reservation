@@ -20,6 +20,7 @@ public class MainMenu {
     private static Collection<Customer> customersHashset = new HashSet<>();
 
 
+
     private static MainMenu mainMenuInstance = null;
     private MainMenu() {}
     public static MainMenu getInstance(){
@@ -36,7 +37,7 @@ public class MainMenu {
 
     public static void startMainMenu() {
        boolean keepRunning = true;
-
+       AdminMenu adminResourceInstance = AdminMenu.getInstance();
 
         while (keepRunning) {
 
@@ -64,8 +65,8 @@ public class MainMenu {
                         hotelResourceInstance.createACustomer(email, firstName, lastName);
                         break;
                     case 4:
-                        AdminMenu adminResourceInstance = AdminMenu.getInstance();
-                        AdminMenu.launchAdminMenu();
+//                        AdminMenu adminResourceInstance = AdminMenu.getInstance();
+                        adminResourceInstance.launchAdminMenu();
                         break;
                     case 5:
                         System.out.println("Exiting program");;
@@ -151,7 +152,7 @@ public class MainMenu {
                     email = getEmail();
                     Customer customer = hotelResourceInstance.getCustomer(email);
                     if(customer.equals(null)){
-                        System.out.println("We are unable to find that email. Are you sure this is correct?");
+                        System.out.println(" We are unable to find that email. Are you sure this is correct? ");
                         throw new IllegalArgumentException("This email does not exist. ");
                     }
 

@@ -29,7 +29,7 @@ public class ReservationService {
         if (!roomsAddedHashSet.add(room)){
             System.out.println("This room as already been added");
         } else {
-            System.out.println("Room " + room + " has been added! " );
+            System.out.println("Room \n" + room + " has been added! " );
         }
     }
 
@@ -39,7 +39,7 @@ public class ReservationService {
                 return room;
             }
         }
-        System.out.println("I'm sorry, we are unable to find " + roomID + " in our system, please try again. ");
+//        System.out.println("I'm sorry, we are unable to find " + roomID + " in our system, please try again. "); Causing room not to save, commenting this out.
         return null;
     }
 

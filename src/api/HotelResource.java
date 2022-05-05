@@ -36,13 +36,13 @@ public class HotelResource {
     }
 
     public IRoom getARoom(String roomNumber){
-       return reservationService.getARoom(roomNumber);
+
+        return reservationService.getARoom(roomNumber);
     }
 
 
     public Reservation bookARoom(String customerEmail, IRoom room, Date checkInDate, Date checkOutDate) {
         Customer customer = CustomerService.getInstance().getCustomer(customerEmail);
-        Reservation customerBookingARoom = ReservationService.getInstance().reserveARoom(customer, room, checkInDate, checkOutDate);
         if (null == customer) {
             return null;
         } else {
