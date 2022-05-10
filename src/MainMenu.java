@@ -199,7 +199,7 @@ public class MainMenu {
             }catch (Exception exception){
                 System.out.println("Invalid data! ");
             } finally {
-                System.out.println("Wrong input! ");
+//                System.out.println("Wrong input! ");
             }
 
         }
@@ -271,7 +271,7 @@ public static Date getDate(String date){
 //        lowercase mm means minute and not Month, lowercase dd is day and uppercase is the day of the year.
 
         while(keepRunning){
-            System.out.println("Example: Month/Day/Year 03/19/2000");
+            System.out.println("Example: Month/Day/Year 03/19/2022");
             try {
                 whileLoopDate = getDateScanner.nextLine();
                 dateInput = dateFormat.parse(whileLoopDate);
