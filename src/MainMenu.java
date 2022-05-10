@@ -199,7 +199,7 @@ public class MainMenu {
             }catch (Exception exception){
                 System.out.println("Invalid data! ");
             } finally {
-                System.out.println("Wrong input");
+                System.out.println("Wrong input! ");
             }
 
         }
@@ -211,11 +211,12 @@ public class MainMenu {
         String emailRegex = "^(.+)@(.+).com$";
         boolean keepRunning = true;
         Scanner getEmailScanner = new Scanner(System.in);
+//        Pattern pattern = Pattern.compile(emailRegex);
 
         while (keepRunning) {
             try {
                 Pattern pattern = Pattern.compile(emailRegex);
-                System.out.println("Enter Email: Ex - JohnDoe@company.com");
+                System.out.println("Enter Email: Ex - JohnDoe@company.com\n");
                 customerEmailInput = getEmailScanner.nextLine();
                 if (!pattern.matcher(customerEmailInput).matches()) {
                     throw new IllegalArgumentException();
@@ -225,9 +226,9 @@ public class MainMenu {
                 }
 
             } catch (Exception exception) {
-                System.out.println("I'm sorry, you have entered the wrong email format. Please try again. ");
+                System.out.println("I'm sorry, you have entered the wrong email format. Please try again.\n");
             } finally {
-                System.out.println("Wrong input");
+//                System.out.println(" Wrong input ");Commenting this out for debug
             }
         }
 
@@ -238,10 +239,11 @@ public static String createAccountWithFullName(String name){
         String nameRegex = "[A-Z]+([ '-]*[a-zA-Z]+)*";
         boolean keepRunning = true;
         Scanner fullNameScanner = new Scanner(System.in);
+        Pattern pattern = Pattern.compile(nameRegex);
 
         while (keepRunning){
             try{
-                Pattern pattern = Pattern.compile(nameRegex);
+
                 System.out.println(name);
                 fullNameInput = fullNameScanner.nextLine();
                 if(!pattern.matcher(fullNameInput).matches()){
@@ -253,7 +255,7 @@ public static String createAccountWithFullName(String name){
             }catch (Exception exception){
                 System.out.println("Invalid Data!");
             }finally {
-                System.out.println("Sorry, wrong input.");
+//                System.out.println("Sorry, wrong input."); Commenting this line for debugging
             }
         }
     return fullNameInput;
@@ -264,19 +266,22 @@ public static Date getDate(String date){
         Scanner getDateScanner = new Scanner(System.in);
         Date dateInput = null;
 //        date dateInput = ""; debug
-        SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+        String whileLoopDate = "";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+//        lowercase mm means minute and not Month, lowercase dd is day and uppercase is the day of the year.
 
         while(keepRunning){
-            System.out.println("Example: Month/Day/Year 02/03/2022");
+            System.out.println("Example: Month/Day/Year 03/19/2000");
             try {
-                String whileLoopDate = getDateScanner.nextLine();
+                whileLoopDate = getDateScanner.nextLine();
                 dateInput = dateFormat.parse(whileLoopDate);
+
             } catch (ParseException parseException) {
                 parseException.printStackTrace();
                 System.out.println("Invalid Date");
-                keepRunning = false;
+                continue;
             }
-
+            keepRunning = false;
         }
 
     return dateInput;

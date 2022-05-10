@@ -48,6 +48,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Welcome: " + firstName + " " + lastName + " " + email ;
+        return "Welcome: " + firstName + "\nLast name " + lastName + "\nEmail " + email + "\nIt's nice to have you has a customer.";
     }
 }
