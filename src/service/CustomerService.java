@@ -25,14 +25,16 @@ public class CustomerService {
         if (!customersNames.add(customer)){
             System.out.println("I'm sorry, this account already exist! ");
         } else {
-            System.out.println("Welcome" + firstName + " " + lastName + " " + email + ". " + " Your account has been created." );
+            System.out.println("Welcome: \n\t" + firstName + "\n\t" + lastName + "\n\t" + email + ".\n " + " Your account has been created." );
         }
     }
 
     public Customer getCustomer(String customerEmail){
         for (Customer customer: customersNames) {
-            System.out.println(customer);
-            return customer;
+            if(customer.getEmail().equals(customerEmail)) {
+                System.out.println(customer);
+                return customer;
+            }
         }
         System.out.println("I'm sorry, we are unable to find you in our system, please try again. ");
         return null;

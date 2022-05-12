@@ -6,11 +6,11 @@ public class Room implements IRoom{
     private RoomType enumeration;
 
 
+
     public Room(String roomNumber, Double price, RoomType enumeration){
         this.roomNumber = roomNumber;
         this.price = price;
         this.enumeration = enumeration;
-
 
     }
 
@@ -30,29 +30,33 @@ public class Room implements IRoom{
         return enumeration;
     }
 
+    @Override
     public String getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
-    }
+//    no need to set setters and getters.
 
-    public Double getPrice() {
-        return price;
-    }
+//    public void setRoomNumber(String roomNumber) {
+//        this.roomNumber = roomNumber;
+//    }
+//
+//    public Double getPrice() {
+//        return price;
+//    }
+//
+//    public void setPrice(Double price) {
+//        this.price = price;
+//    }
+//
+//    public RoomType getEnumeration() {
+//        return enumeration;
+//    }
+//
+//    public void setEnumeration(RoomType enumeration) {
+//        this.enumeration = enumeration;
+//    }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public RoomType getEnumeration() {
-        return enumeration;
-    }
-
-    public void setEnumeration(RoomType enumeration) {
-        this.enumeration = enumeration;
-    }
 
 
 
@@ -60,4 +64,5 @@ public class Room implements IRoom{
     public String toString() {
         return "Please find the available rooms below: \n" +"Room number: " + roomNumber + "\nPrice: " + price + "\nType of Room: " + enumeration;
     }
+
 }

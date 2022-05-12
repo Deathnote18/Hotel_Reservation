@@ -25,7 +25,6 @@ public class ReservationService {
 
     Collection<IRoom> roomsAddedHashSet = new HashSet<>();
     public void addRoom(IRoom room){
-//        IRoom roomToBeAdded = new IRoom(room);
         if (!roomsAddedHashSet.add(room)){
             System.out.println("This room as already been added");
         } else {
@@ -77,8 +76,6 @@ public class ReservationService {
             }
         }
 
-
-
         return roomsNotOccupied;
     }
 
@@ -95,7 +92,7 @@ public class ReservationService {
 
     public void printAllReservation(){
         for (Reservation reservation: reservationHashSet) {
-            System.out.println(reservation);
+             System.out.println(reservation);
         }
     }
 
