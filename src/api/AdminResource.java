@@ -14,7 +14,7 @@ public class AdminResource {
     private static ReservationService reservationService = ReservationService.getInstance();
 
     private static AdminResource adminResource = null;
-    private void AdminResource() {}
+    private AdminResource() {}
     public static AdminResource getInstance(){
         if (null == adminResource){
             adminResource = new AdminResource();

@@ -4,6 +4,7 @@ import model.Customer;
 import model.IRoom;
 import model.Reservation;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -267,14 +268,15 @@ public static Date getDate(String date){
         Date dateInput = null;
 //        date dateInput = ""; debug
         String whileLoopDate = "";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-//        lowercase mm means minute and not Month, lowercase dd is day and uppercase is the day of the year.
+//        SimpleDateFormat checkInAndCheckOutDateFormat = new SimpleDateFormat("dd/MM/yyyy"); -- This one doesn't work. Unable to read the date
+        DateFormat checkInAndCheckOutDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+//        lowercase mm means minutes and not Month, lowercase dd is day and uppercase is the day of the year.
 
         while(keepRunning){
-            System.out.println("Example: Month/Day/Year 03/19/2022");
+            System.out.println("Example: Month/Day/Year 03/19/2022\n");
             try {
                 whileLoopDate = getDateScanner.nextLine();
-                dateInput = dateFormat.parse(whileLoopDate);
+                dateInput = checkInAndCheckOutDateFormat.parse(whileLoopDate);
 
             } catch (ParseException parseException) {
                 parseException.printStackTrace();
