@@ -25,7 +25,7 @@ public class CustomerService {
         if (!customersNames.add(customer)){
             System.out.println("I'm sorry, this account already exist! ");
         } else {
-            System.out.println("Welcome: \n\t" + firstName + "\n\t" + lastName + "\n\t" + email + ".\n " + " Your account has been created." );
+            System.out.println("Welcome: " + firstName + " " + lastName +"\n" + "Email: " + email + ".\n " + "Your account has been created.\n" );
         }
     }
 

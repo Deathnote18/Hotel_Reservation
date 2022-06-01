@@ -61,8 +61,8 @@ public class MainMenu {
                         break;
                     case 3:
                         String email = getEmail();
-                        String firstName = createAccountWithFullName("Enter your first name".toUpperCase());
-                        String lastName = createAccountWithFullName("Enter your last name".toUpperCase());
+                        String firstName = createAccountWithFullName("Enter your first name?");
+                        String lastName = createAccountWithFullName("Enter your last name?");
                         hotelResourceInstance.createACustomer(email, firstName, lastName);
                         break;
                     case 4:
@@ -78,7 +78,7 @@ public class MainMenu {
             }catch (Exception exception){
                 System.out.println("Error".toString());
             } finally {
-                System.out.println("This is not really needed but I figured I'd put one. ");
+//                System.out.println("This is not really needed but I figured I'd put one. ");
             }
 
 
@@ -246,7 +246,7 @@ public static String createAccountWithFullName(String name){
             try{
 
                 System.out.println(name);
-                fullNameInput = fullNameScanner.nextLine();
+                fullNameInput = fullNameScanner.nextLine().toUpperCase();
                 if(!pattern.matcher(fullNameInput).matches()){
                     throw new IllegalArgumentException();
 
